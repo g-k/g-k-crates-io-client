@@ -333,7 +333,7 @@ impl Registry {
     }
 
     fn handle(&mut self, read: &mut dyn FnMut(&mut [u8]) -> usize) -> Result<String> {
-        let mut headers = vec![String::from("User-Agent: cargo-show")];
+        let mut headers = vec![String::from("User-Agent: cargo-show (https://github.com/g-k/cargo-show)")];
         let mut body = Vec::new();
         let started;
         {
