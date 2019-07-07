@@ -170,7 +170,7 @@ impl Registry {
 
     pub fn get_crate_data(&mut self, krate: &str) -> Result<String> {
         self.handle.get(true)?;
-        self.req(format!("/crates/{}", krate), None, Auth::Unauthorized)
+        self.req(&format!("/crates/{}", krate), None, Auth::Unauthorized)
     }
 
     pub fn get_crate_dependencies(&mut self, krate: &str, version: &str) -> Result<String> {
@@ -179,7 +179,7 @@ impl Registry {
         // But let's assume that it always is constant:
         // `/api/v1/crates/$krate/$version/dependencies`
         self.handle.get(true)?;
-        self.req(format!("/crates/{}/{}/dependencies", krate, version), None, Auth::Unauthorized)
+        self.req(&format!("/crates/{}/{}/dependencies", krate, version), None, Auth::Unauthorized)
     }
 
     pub fn publish(&mut self, krate: &NewCrate, tarball: &File) -> Result<Warnings> {
@@ -333,8 +333,7 @@ impl Registry {
     }
 
     fn handle(&mut self, read: &mut dyn FnMut(&mut [u8]) -> usize) -> Result<String> {
-        let mut headers = Vec::new();
-        headers.append("User-Agent: cargo-show")?;
+        let mut headers = vec![String::from("User-Agent: cargo-show")];
         let mut body = Vec::new();
         let started;
         {
