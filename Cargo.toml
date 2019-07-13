@@ -1,6 +1,6 @@
 [package]
 name = "g-k-crates-io-client"
-version = "0.27.0"
+version = "0.27.1"
 edition = "2018"
 authors = ["Alex Crichton <alex@alexcrichton.com>"]
 license = "MIT OR Apache-2.0"
