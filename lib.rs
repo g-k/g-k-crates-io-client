@@ -234,6 +234,7 @@ impl Registry {
         self.handle.in_filesize(size as u64)?;
         let mut headers = List::new();
         headers.append("Accept: application/json")?;
+        headers.append("User-Agent: cargo-show (https://github.com/g-k/cargo-show)")?;
         headers.append(&format!("Authorization: {}", token))?;
         self.handle.http_headers(headers)?;
 
@@ -316,6 +317,7 @@ impl Registry {
         self.handle.url(&format!("{}/api/v1{}", self.host, path))?;
         let mut headers = List::new();
         headers.append("Accept: application/json")?;
+        headers.append("User-Agent: cargo-show (https://github.com/g-k/cargo-show)")?;
         headers.append("Content-Type: application/json")?;
 
         if authorized == Auth::Authorized {
